@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    /* Prevents selecting application text holding native feel */
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .dark body {
+    background: linear-gradient(-45deg, #090914, #2a0845, #140b2e, #090914);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer utilities {
+  /* Wails region drag allows moving the window by dragging this element */
+  .wails-drag {
+    --wails-draggable: drag;
+  }
+  .wails-no-drag {
+    --wails-draggable: no-drag;
+  }
+  
+  /* Glassmorphism panel styling */
+  .glass-panel {
+    @apply bg-white/5 dark:bg-dark-surface/50 backdrop-blur-xl border border-white/10 dark:border-dark-border shadow-xl;
+  }
+
+  /* Input fields styling */
+  .styled-input {
+    @apply w-full bg-white dark:bg-dark-bg border border-gray-300 dark:border-dark-border rounded px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200;
+  }
+  
+  /* Select styling */
+  .styled-select {
+    @apply styled-input appearance-none cursor-pointer;
+  }
+
+  /* Button styling */
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-500 text-white font-medium py-2 px-4 rounded shadow-lg shadow-brand-500/30 transition-all duration-200 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 dark:bg-dark-border dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-4 rounded transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  /* File Drop Zone styling */
+  .drop-zone {
+    @apply border-2 border-dashed border-gray-300 dark:border-dark-border rounded-xl flex flex-col items-center justify-center p-8 transition-colors duration-200 bg-white/50 dark:bg-dark-surface/30 cursor-pointer hover:border-brand-500 dark:hover:border-brand-500;
+  }
+  
+  .drop-zone.active {
+    @apply border-brand-500 bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400;
+  }
+
+  /* Custom scrollbar for log windows */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+  }
+}
